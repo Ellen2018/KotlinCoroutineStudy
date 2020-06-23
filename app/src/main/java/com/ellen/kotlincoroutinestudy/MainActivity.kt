@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tv = findViewById(R.id.tv)
+
         GlobalScope.launch(Dispatchers.Main){
             //打印一下Dispatchers.Main的线程名字
             Log.e("Ellen2018","main：${Thread.currentThread().name}")
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
                 // network request
                 Log.e("Ellen2018","c1：${Thread.currentThread().name}")
                 delay(3000)
+                //调用挂起函数
                 a()
                 "傻逼中的战斗机"
             }
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
      * 2020-06-23 21:49:03.119 26556-26603/com.ellen.kotlincoroutinestudy E/Ellen2018: c1：DefaultDispatcher-worker-1
      * 2020-06-23 21:49:06.144 26556-26603/com.ellen.kotlincoroutinestudy E/Ellen2018: c2：DefaultDispatcher-worker-1
      *
-     * 从以上打印的结果来看，Kotlin中的协程是基于Java Thread api实现无疑
+     * 从以上打印的结果来看，Kotlin中的协程是基于Java Thread api实现无疑(很明显看出就是线程池)
      */
 
     suspend fun a(){
